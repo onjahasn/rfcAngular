@@ -1,0 +1,24 @@
+<div class="d-flex">
+  <div class="border-end bg-white sidebar-sticky">
+    <div class="sidebar-heading border-bottom bg-light fw-bold">PERSONNE PHYSIQUE</div>
+    <div class="list-group list-group-flush">
+      <ul class="personne">
+        <!-- *ngFor est une directive structurale Angular qui répète l'élément <li> pour chaque élément dans l'array 'personnes' après lui avoir appliqué les pipes 'sort' et 'paginate'. -->
+        <li *ngFor="let personne of (personnes | sort: ['nom_prenom']:1) | paginate: { itemsPerPage: 15, currentPage: p }">
+          <!-- Lorsque l'utilisateur clique sur le bouton, la méthode onSelect() est appelée avec l'objet 'personne' actuel comme argument. -->
+          <button type="button" (click)="onSelect(personne)">
+            <span class="badge">{{personne.id}}</span>
+            <div class="name">{{personne.nom}} {{personne.prenom}}</div>
+          </button>
+        </li>
+      </ul>
+    </div>
+    <pagination-controls (pageChange)="p = $event" previousLabel="" nextLabel=""></pagination-controls>
+    
+  </div>
+
+  <div class="container-fluid">
+    <app-personne-detail [selectedPersonne]="selectedPersonne!" (updateRequest)="updatePersonne($event)"></app-personne-detail>
+    <!-- ! est utilisé pour assurer que la valeur n'est pas null ou undefined-->
+  </div>
+</div>

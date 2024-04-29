@@ -1,0 +1,37 @@
+.sidebar {
+  min-height: 100vh;
+  background-color: #f8f9fa;
+  font-family: 'Roboto', sans-serif
+}
+.sidebar-sticky {
+  position: sticky;
+  top: 0;
+}
+footer a.text-muted {
+  color: #aaa;
+}
+
+footer a.text-muted:hover {
+  color: #fff; /* effet hover */
+}
+img {
+  width: 5em;
+}
+nav {
+  background: #1423DC;
+}
+.image-container {
+  position: relative;
+  text-align: center; /* Centre le texte horizontalement */
+}
+
+.centered-text {
+  position: absolute;
+  top: 50%; /* Centre verticalement */
+  left: 50%;
+  transform: translate(-50%, -50%); /* Alignement précis au centre */
+  color: #93C90E; /* Couleur du texte */
+  font-size: 2em; /* Taille du texte */
+  /* Ajoutez d'autres styles de texte au besoin */
+}
+

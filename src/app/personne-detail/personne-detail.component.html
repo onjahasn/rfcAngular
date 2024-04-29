@@ -1,0 +1,125 @@
+<!--LA NAVBAR-->
+<nav class="navbar navbar-expand-lg navbar-dark" *ngIf="selectedPersonne">
+    <div class="container-fluid">
+        <img src="assets/images/logo-enedis.webp" alt="Logo">
+    </div>
+    <div class="collapse navbar-collapse navbar-nav me-auto mb-2 mb-lg-0">
+        <h2 class="card-title text-center mb-3">{{selectedPersonne.nom | uppercase}} {{selectedPersonne.prenom |
+            uppercase}}
+            Details</h2>
+    </div>
+</nav>
+<div *ngIf="!selectedPersonne" class="image-container">
+    <img class="w-100" src="assets/images/impact.jpg" alt="Enedis">
+    <div class="centered-text">Les energies renouvelebles couvrent 30% de la consomation électrique française</div>
+  </div>
+<div class="container mt-5" *ngIf="selectedPersonne">
+    <h1 class="mb-4">Gérer le compte client</h1>
+    <form (ngSubmit)="updatePersonne()">
+        <h3>Identité du client</h3>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="civilite">Civilité (facultatif)</label>
+                <select id="civilite" name="civilite" class="form-control">
+                    <option value="">Sélectionnez</option>
+                    <option value="mr">Monsieur</option>
+                    <option value="mme">Madame</option>
+                </select>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="prenom">PRENOM</label>
+                <input type="text" class="form-control" id="prenom" name="prenom" [(ngModel)]="selectedPersonne.prenom">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="nom">NOM</label>
+                <input type="text" class="form-control" id="nom" name="nom" [(ngModel)]="selectedPersonne.nom">
+            </div>
+        </div>
+        <h3>Adresse mail et contact</h3>
+        <div *ngFor="let canal of selectedPersonne.canaldeContact; let i = index" class="form-group">
+            <label class="fw-bold">{{ canal.type | uppercase }}</label>
+            <input type="email" class="form-control" [(ngModel)]="canal.valeur" name="email-{{i}}">
+        </div>
+        <h3>Adresse postale de contact (facultatif)</h3>
+        <div *ngFor="let canal of selectedPersonne.canaldeContact; let j = index">
+            <div *ngIf="canal.ligne1">
+                <div class="form-group">
+                    <label for="street-{{j}}" class="fw-bold">ADRESSE</label>
+                    <input type="text" class="form-control" id="street-{{j}}" [(ngModel)]="canal.ligne1"
+                        name="street-{{j}}">
+                </div>
+                <div class="form-group">
+                    <label for="street-{{j}}" class="fw-bold">COMPLEMENT D'ADRESSE</label>
+                    <input type="text" class="form-control" id="street-{{j}}" [(ngModel)]="canal.ligne2"
+                        name="street-{{j}}">
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="postalCode-{{j}}" class="fw-bold">CODE POSTAL</label>
+                        <input type="text" class="form-control" id="postalCode-{{j}}" [(ngModel)]="canal.ligne5"
+                            name="postalCode-{{j}}">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="city-{{j}}" class="fw-bold">VILLE</label>
+                        <input type="text" class="form-control" id="city-{{j}}" [(ngModel)]="canal.ligne3"
+                            name="city-{{j}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="country-{{j}}" class="fw-bold">PAYS</label>
+                        <input type="text" class="form-control" id="country-{{j}}" [(ngModel)]="canal.ligne4"
+                            name="country-{{j}}">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Enregistrer</button>
+    </form>
+
+
+<footer class="bg-dark text-light py-3 mt-4">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2">
+                <img src="assets/images/logo-enedis.webp" alt="Logo">
+            </div>
+            <div class="col-md-10">
+                <div class="row">
+                    <div class="col-md-3">
+                        <ul class="list-unstyled">
+                            <li><a href="#" class="text-white">Mentions légales</a></li>
+                            <li><a href="#" class="text-white">Conditions générales d'utilisation</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3">
+                        <ul class="list-unstyled">
+                            <li><a href="#" class="text-white">Données personnelles</a></li>
+                            <li><a href="#" class="text-white">Politique de cookies</a></li>
+                            <li><a href="#" class="text-white">Gérer mes cookies</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-2">
+                        <ul class="list-unstyled">
+                            <li><a href="#" class="text-white">Accessibilité</a></li>
+                            <li><a href="#" class="text-white">Plan du site</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3">
+                        <ul class="list-unstyled">
+                            <li><a href="#" class="text-white">Aide & Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-1">
+                        <a href="https://twitter.com/enedis" class="p-1"><i class="fab fa-twitter"></i></a>
+                        <a href="https://facebook.com/enedis" class="p-1"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/enedis" class="p-1"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/company/enedis" class="p-1"><i
+                                class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.youtube.com/channel/UCenedis"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
